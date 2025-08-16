@@ -7,7 +7,7 @@ plugins {
     id("com.google.devtools.ksp") version "2.2.0-2.0.2"
     id("com.rickclephas.kmp.nativecoroutines") version "1.0.0-ALPHA-45"
     id("kotlin-kapt")
-    kotlin("plugin.serialization") version "1.9.22"
+    kotlin("plugin.serialization") version "2.2.10"
 }
 
 kotlin {
@@ -40,25 +40,20 @@ kotlin {
             api("com.rickclephas.kmp:kmp-observableviewmodel-core:1.0.0-BETA-12")
             // put your Multiplatform dependencies here
             implementation("io.insert-koin:koin-core:4.1.0")
-            implementation(libs.ktor.client.core)
             implementation(libs.kotlinx.coroutines.core)
-            implementation("io.ktor:ktor-client-core:2.3.11")
+            implementation("io.ktor:ktor-client-core:3.2.3")
             implementation("io.ktor:ktor-client-content-negotiation:3.2.3")
+            implementation("io.ktor:ktor-client-logging:3.2.3")
             implementation("io.ktor:ktor-serialization-kotlinx-json:3.2.3")
-            implementation("io.ktor:ktor-serialization-kotlinx-xml:3.2.3")
-            implementation("io.ktor:ktor-serialization-kotlinx-cbor:3.2.3")
-            implementation("io.ktor:ktor-serialization-kotlinx-protobuf:3.2.3")
-            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
-
-            //Room
-            implementation("androidx.room:room-ktx:2.7.2")
-//            kapt("androidx.room:room-compiler:2.7.2")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
         }
 
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
             implementation("io.ktor:ktor-client-android:3.2.3")
+            //Room
+            implementation("androidx.room:room-ktx:2.7.2")
         }
 
         iosMain.dependencies {

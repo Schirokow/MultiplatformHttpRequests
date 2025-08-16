@@ -1,6 +1,6 @@
 package com.example.bunghttprequests.data
 
-import com.example.bunghttprequests.data.HttpService.client
+import org.example.multiplatformhttprequests.HttpService.client
 import com.example.bunghttprequests.data.PostRepository.getPostById
 import com.example.bunghttprequests.data.PostRepository.getPosts
 import com.example.bunghttprequests.data.PostRepository.getPostsByUserId
@@ -13,10 +13,12 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpMethod
 import io.ktor.http.contentType
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
+import org.example.multiplatformhttprequests.logMessage  // Import für Logging
 
 object PostRepository {
     @Serializable
