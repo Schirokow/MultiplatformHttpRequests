@@ -4,8 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.bunghttprequests.data.dao.PostsDao
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-
+import org.example.multiplatformhttprequests.data.PostRepository
 
 
 object LocalStorageService {

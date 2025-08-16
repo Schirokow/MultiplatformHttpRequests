@@ -1,7 +1,7 @@
 package com.example.bunghttprequests.business.usecases
 
-import com.example.bunghttprequests.data.PostRepository
-import com.example.bunghttprequests.data.UpdatePost
+import org.example.multiplatformhttprequests.data.PostRepository
+import org.example.multiplatformhttprequests.data.UpdatePost
 
 class UpdatePostUseCase(private val updatePost: UpdatePost) {
     suspend fun updatePost(post: PostRepository.Post): PostRepository.Post?{

@@ -1,9 +1,9 @@
-package com.example.bunghttprequests.data
+package org.example.multiplatformhttprequests.data
 
 import org.example.multiplatformhttprequests.HttpService.client
-import com.example.bunghttprequests.data.PostRepository.getPostById
-import com.example.bunghttprequests.data.PostRepository.getPosts
-import com.example.bunghttprequests.data.PostRepository.getPostsByUserId
+import org.example.multiplatformhttprequests.data.PostRepository.getPostById
+import org.example.multiplatformhttprequests.data.PostRepository.getPosts
+import org.example.multiplatformhttprequests.data.PostRepository.getPostsByUserId
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.post
@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
-import org.example.multiplatformhttprequests.logMessage  // Import für Logging
+import org.example.multiplatformhttprequests.logMessage
 
 object PostRepository {
     @Serializable
@@ -34,11 +34,10 @@ object PostRepository {
             withContext(Dispatchers.IO){
                 client.get("https://jsonplaceholder.typicode.com/posts"){
                     contentType(ContentType.Application.Json)
-                    println("suspend fun getPosts in PostRepository used")
                 }.body<List<Post>>()
             }
         } catch (e: Exception){
-            println("Fehler beim laden des Posts: ${e.message}")
+            logMessage("Fehler beim Laden der Posts: ${e.message}")
             emptyList()
         }
     }
@@ -48,11 +47,10 @@ object PostRepository {
             withContext(Dispatchers.IO){
                 client.get("https://jsonplaceholder.typicode.com/posts?userId=${userId}"){
                     contentType(ContentType.Application.Json)
-                    println("suspend fun getPostsByUserId in PostRepository used")
                 }.body<List<Post>>()
             }
         } catch (e: Exception){
-            println("Fehler beim laden des Posts nach userId: ${e.message}")
+            logMessage("Fehler beim Laden der Posts nach userId: ${e.message}")
             emptyList()
         }
     }
@@ -63,11 +61,10 @@ object PostRepository {
             withContext(Dispatchers.IO){
                 client.get("https://jsonplaceholder.typicode.com/posts/${id}"){
                     contentType(ContentType.Application.Json)
-                    println("suspend fun getPostById in PostRepository used")
                 }.body<Post>()
             }
         } catch (e: Exception){
-            println("Fehler beim laden des Posts nach Id: ${e.message}")
+            logMessage("Fehler beim Laden des Posts nach Id: ${e.message}")
             null
         }
     }
@@ -79,11 +76,10 @@ object PostRepository {
                     method = HttpMethod.Post
                     contentType(ContentType.Application.Json)
                     setBody(newPost)
-                    println("suspend fun createPost in PostRepository used")
                 }.body<Post>()
             }
         } catch (e: Exception){
-            println("Fehler beim erstellen des Posts: ${e.message}")
+            logMessage("Fehler beim Erstellen des Posts: ${e.message}")
             null
         }
     }
@@ -94,11 +90,10 @@ object PostRepository {
                 client.put("https://jsonplaceholder.typicode.com/posts/${post.id}"){
                     contentType(ContentType.Application.Json)
                     setBody(post)
-                    println("suspend fun updatePost in PostRepository used")
                 }.body<Post>()
             }
         } catch (e: Exception){
-            println("Fehler beim Aktualisieren des Posts: ${e.message}")
+            logMessage("Fehler beim Aktualisieren des Posts: ${e.message}")
             null
         }
     }

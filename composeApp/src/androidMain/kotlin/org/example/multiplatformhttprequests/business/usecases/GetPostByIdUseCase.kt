@@ -1,7 +1,7 @@
 package com.example.bunghttprequests.business.usecases
 
-import com.example.bunghttprequests.data.GetPostById
-import com.example.bunghttprequests.data.PostRepository
+import org.example.multiplatformhttprequests.data.GetPostById
+import org.example.multiplatformhttprequests.data.PostRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetPostByIdUseCase(private val post: GetPostById) {

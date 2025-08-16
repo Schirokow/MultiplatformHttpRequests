@@ -53,27 +53,13 @@ import androidx.compose.ui.unit.sp
 import com.example.bunghttprequests.card.PostCard
 import com.example.bunghttprequests.data.LocalStorageService
 import org.koin.androidx.compose.koinViewModel
-import com.example.bunghttprequests.data.PostRepository
+import org.example.multiplatformhttprequests.data.PostRepository
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Text
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-
-import androidx.compose.ui.unit.dp
 
 
 import com.example.bunghttprequests.presentation.viewmodels.PostsViewModel
 import com.example.bunghttprequests.ui.theme.ÜbungHTTPRequestsTheme
-import kotlinx.coroutines.launch
 
 
 @Composable

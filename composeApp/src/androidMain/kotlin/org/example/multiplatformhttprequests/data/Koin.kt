@@ -6,6 +6,16 @@ import com.example.bunghttprequests.business.usecases.GetPostsByUserIdUseCase
 import com.example.bunghttprequests.business.usecases.GetPostsUseCase
 import com.example.bunghttprequests.business.usecases.UpdatePostUseCase
 import com.example.bunghttprequests.presentation.viewmodels.PostsViewModel
+import org.example.multiplatformhttprequests.data.CreatePost
+import org.example.multiplatformhttprequests.data.CreatePostImpl
+import org.example.multiplatformhttprequests.data.GetPostById
+import org.example.multiplatformhttprequests.data.GetPostByIdImplFlow
+import org.example.multiplatformhttprequests.data.GetPostsByUserId
+import org.example.multiplatformhttprequests.data.GetPostsByUserIdImplFlow
+import org.example.multiplatformhttprequests.data.PostsRepository
+import org.example.multiplatformhttprequests.data.PostsRepositoryImplFlow
+import org.example.multiplatformhttprequests.data.UpdatePost
+import org.example.multiplatformhttprequests.data.UpdatePostImpl
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module

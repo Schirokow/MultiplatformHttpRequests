@@ -12,13 +12,4 @@ expect fun logMessage(message: String) // Plattformspezifisches Logging
 object HttpService {
     val client = httpClient
 
-    suspend fun getData(url: String): String {
-        return try {
-            val response: HttpResponse = client.get(url)
-            response.bodyAsText()
-        } catch (e: Exception) {
-            logMessage("Error fetching data: ${e.message}")
-            ""
-        }
-    }
 }

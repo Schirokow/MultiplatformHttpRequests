@@ -1,7 +1,7 @@
 package com.example.bunghttprequests.business.usecases
 
-import com.example.bunghttprequests.data.CreatePost
-import com.example.bunghttprequests.data.PostRepository
+import org.example.multiplatformhttprequests.data.CreatePost
+import org.example.multiplatformhttprequests.data.PostRepository
 
 class CreatePostUseCase(private val createPost: CreatePost) {
 
