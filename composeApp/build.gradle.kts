@@ -6,7 +6,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    id("kotlin-kapt")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
     kotlin("plugin.serialization") version "2.2.10"
 }
 
@@ -30,8 +31,7 @@ kotlin {
             implementation("io.insert-koin:koin-android:4.1.0")
             implementation("io.insert-koin:koin-androidx-navigation:4.1.0")
             implementation("io.insert-koin:koin-androidx-compose:4.1.0")
-            // Room
-            implementation("androidx.room:room-ktx:2.7.2")
+
             // Extended Icons
             implementation("androidx.compose.material:material-icons-extended:1.7.8")
 
@@ -47,8 +47,10 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation("io.insert-koin:koin-core:4.1.0")
-            // Room Common (falls benötigt, sonst entfernen)
-            implementation("androidx.room:room-common:2.7.2")
+
+            // Room
+            implementation(libs.room.runtime)
+            implementation(libs.sqlite.bundled)
 
         }
         commonTest.dependencies {
@@ -67,10 +69,6 @@ android {
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
-    }
-
-    dependencies {
-        add("kapt", "androidx.room:room-compiler:2.7.2")
     }
 
     packaging {
@@ -92,5 +90,13 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+dependencies {
+    ksp(libs.room.compiler)
 }
 
