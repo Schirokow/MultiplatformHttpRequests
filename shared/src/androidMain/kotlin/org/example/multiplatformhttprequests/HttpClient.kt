@@ -1,13 +1,13 @@
 package org.example.multiplatformhttprequests
 
 import io.ktor.client.*
-import io.ktor.client.engine.android.*
+import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
-actual val httpClient: HttpClient = HttpClient(Android) {
+actual val httpClient: HttpClient = HttpClient(OkHttp) {
     install(ContentNegotiation) {
         json(Json {
             prettyPrint = true
@@ -23,9 +23,9 @@ actual val httpClient: HttpClient = HttpClient(Android) {
         }
         level = LogLevel.ALL
     }
-    engine {
-        connectTimeout = 100_000
-        socketTimeout = 100_000
-    }
+//    engine {
+//        connectTimeout = 100_000
+//        socketTimeout = 100_000
+//    }
 }
 

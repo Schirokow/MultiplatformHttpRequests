@@ -5,8 +5,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     id("com.google.devtools.ksp") version "2.2.0-2.0.2"
-    id("com.rickclephas.kmp.nativecoroutines") version "1.0.0-ALPHA-45"
-    id("kotlin-kapt")
+    id("com.rickclephas.kmp.nativecoroutines") version "1.0.0-ALPHA-46"
     kotlin("plugin.serialization") version "2.2.10"
 }
 
@@ -51,14 +50,12 @@ kotlin {
 
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
-            implementation("io.ktor:ktor-client-android:3.2.3")
             //Room
             implementation("androidx.room:room-ktx:2.7.2")
         }
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
-            implementation("io.ktor:ktor-client-darwin:3.2.3")
         }
 
 
