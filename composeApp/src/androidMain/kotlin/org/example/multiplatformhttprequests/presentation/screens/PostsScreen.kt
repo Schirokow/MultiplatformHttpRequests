@@ -58,7 +58,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.material3.OutlinedTextFieldDefaults
 
 
-import com.example.bunghttprequests.presentation.viewmodels.PostsViewModel
+import org.example.multiplatformhttprequests.viewmodels.PostsViewModel
 import com.example.bunghttprequests.ui.theme.ÜbungHTTPRequestsTheme
 
 

@@ -1,8 +1,8 @@
-package com.example.bunghttprequests.business.usecases
+package org.example.multiplatformhttprequests.usecases
 
+import kotlinx.coroutines.flow.Flow
 import org.example.multiplatformhttprequests.data.PostRepository
 import org.example.multiplatformhttprequests.data.PostsRepository
-import kotlinx.coroutines.flow.Flow
 
 class GetPostsUseCase(private val posts: PostsRepository) {
 //    private val posts = PostsRepositoryImplFlow()
@@ -10,4 +10,3 @@ class GetPostsUseCase(private val posts: PostsRepository) {
         return posts.getPostsFlow()
     }
 }
-

@@ -1,11 +1,11 @@
 package org.example.multiplatformhttprequests.data
 
-import com.example.bunghttprequests.business.usecases.CreatePostUseCase
-import com.example.bunghttprequests.business.usecases.GetPostByIdUseCase
-import com.example.bunghttprequests.business.usecases.GetPostsByUserIdUseCase
-import com.example.bunghttprequests.business.usecases.GetPostsUseCase
-import com.example.bunghttprequests.business.usecases.UpdatePostUseCase
-import com.example.bunghttprequests.presentation.viewmodels.PostsViewModel
+import org.example.multiplatformhttprequests.usecases.CreatePostUseCase
+import org.example.multiplatformhttprequests.usecases.GetPostByIdUseCase
+import org.example.multiplatformhttprequests.usecases.GetPostsByUserIdUseCase
+import org.example.multiplatformhttprequests.usecases.GetPostsUseCase
+import org.example.multiplatformhttprequests.usecases.UpdatePostUseCase
+import org.example.multiplatformhttprequests.viewmodels.PostsViewModel
 import org.example.multiplatformhttprequests.data.dao.PostsDao
 import org.example.multiplatformhttprequests.database.GetAndroidDatabase
 import org.koin.android.ext.koin.androidContext

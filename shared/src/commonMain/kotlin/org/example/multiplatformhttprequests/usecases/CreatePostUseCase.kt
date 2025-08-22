@@ -1,4 +1,4 @@
-package com.example.bunghttprequests.business.usecases
+package org.example.multiplatformhttprequests.usecases
 
 import org.example.multiplatformhttprequests.data.CreatePost
 import org.example.multiplatformhttprequests.data.PostRepository

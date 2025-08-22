@@ -55,6 +55,10 @@ kotlin {
 
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
+            implementation("io.insert-koin:koin-core:4.1.0")
+            implementation("io.insert-koin:koin-android:4.1.0")
+            implementation("io.insert-koin:koin-androidx-navigation:4.1.0")
+            implementation("io.insert-koin:koin-androidx-compose:4.1.0")
         }
 
         iosMain.dependencies {
