@@ -1,11 +1,11 @@
-package com.example.bunghttprequests.data.dao
+package org.example.multiplatformhttprequests.data.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.bunghttprequests.data.LocalStorageService
 import kotlinx.coroutines.flow.Flow
+import org.example.multiplatformhttprequests.data.LocalStorageService
 
 @Dao
 interface PostsDao {

@@ -1,4 +1,4 @@
-package com.example.bunghttprequests.presentation.screens
+package org.example.multiplatformhttprequests.presentation.screens
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -51,7 +51,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.bunghttprequests.card.PostCard
-import com.example.bunghttprequests.data.LocalStorageService
+import org.example.multiplatformhttprequests.data.LocalStorageService
 import org.koin.androidx.compose.koinViewModel
 import org.example.multiplatformhttprequests.data.PostRepository
 import androidx.compose.ui.text.TextStyle

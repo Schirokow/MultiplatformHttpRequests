@@ -1,8 +1,8 @@
-package com.example.bunghttprequests.data
+package org.example.multiplatformhttprequests.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.bunghttprequests.data.dao.PostsDao
+import org.example.multiplatformhttprequests.data.dao.PostsDao
 
 @Database(entities = [LocalStorageService.LocalPostStorage::class], version = 1)
 

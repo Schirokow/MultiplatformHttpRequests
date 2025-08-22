@@ -1,4 +1,4 @@
-package com.example.bunghttprequests.data
+package org.example.multiplatformhttprequests.data
 
 import com.example.bunghttprequests.business.usecases.CreatePostUseCase
 import com.example.bunghttprequests.business.usecases.GetPostByIdUseCase
@@ -6,16 +6,8 @@ import com.example.bunghttprequests.business.usecases.GetPostsByUserIdUseCase
 import com.example.bunghttprequests.business.usecases.GetPostsUseCase
 import com.example.bunghttprequests.business.usecases.UpdatePostUseCase
 import com.example.bunghttprequests.presentation.viewmodels.PostsViewModel
-import org.example.multiplatformhttprequests.data.CreatePost
-import org.example.multiplatformhttprequests.data.CreatePostImpl
-import org.example.multiplatformhttprequests.data.GetPostById
-import org.example.multiplatformhttprequests.data.GetPostByIdImplFlow
-import org.example.multiplatformhttprequests.data.GetPostsByUserId
-import org.example.multiplatformhttprequests.data.GetPostsByUserIdImplFlow
-import org.example.multiplatformhttprequests.data.PostsRepository
-import org.example.multiplatformhttprequests.data.PostsRepositoryImplFlow
-import org.example.multiplatformhttprequests.data.UpdatePost
-import org.example.multiplatformhttprequests.data.UpdatePostImpl
+import org.example.multiplatformhttprequests.data.dao.PostsDao
+import org.example.multiplatformhttprequests.database.GetAndroidDatabase
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
@@ -24,7 +16,11 @@ val appModule = module {
 
     // Koin soll wissen, wie man PostsDao bereitstellt
     // Dies hängt vom Android Context ab, den Koin mit androidContext() liefert
-    single { DatabaseProvider.providePostDao(androidContext()) }
+//    single { DatabaseProvider.providePostDao(androidContext()) }
+    single { GetAndroidDatabase.getDatabase(androidContext()) }
+
+    // PostsDao aus PostDatabase bereitstellen
+    single<PostsDao> { get<PostDatabase>().postDao() }
 
     // Koin soll wissen, wie man LocalStorageService.LocalPostsStorage bereitstellt
     // Es benötigt ein PostsDao, das Koin jetzt bereitstellen kann

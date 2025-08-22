@@ -1,4 +1,4 @@
-package com.example.bunghttprequests.data
+package org.example.multiplatformhttprequests.data
 
 import android.app.Application
 import org.koin.android.ext.koin.androidContext

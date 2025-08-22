@@ -8,7 +8,7 @@ import com.example.bunghttprequests.business.usecases.GetPostByIdUseCase
 import com.example.bunghttprequests.business.usecases.GetPostsByUserIdUseCase
 import com.example.bunghttprequests.business.usecases.GetPostsUseCase
 import com.example.bunghttprequests.business.usecases.UpdatePostUseCase
-import com.example.bunghttprequests.data.LocalStorageService
+import org.example.multiplatformhttprequests.data.LocalStorageService
 import org.example.multiplatformhttprequests.data.PostRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

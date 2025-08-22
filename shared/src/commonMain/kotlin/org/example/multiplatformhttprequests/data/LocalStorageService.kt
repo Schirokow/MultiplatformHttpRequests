@@ -1,11 +1,9 @@
-package com.example.bunghttprequests.data
+package org.example.multiplatformhttprequests.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.bunghttprequests.data.dao.PostsDao
 import kotlinx.coroutines.flow.Flow
-import org.example.multiplatformhttprequests.data.PostRepository
-
+import org.example.multiplatformhttprequests.data.dao.PostsDao
 
 object LocalStorageService {
     @Entity(tableName = "local_posts")
@@ -18,7 +16,7 @@ object LocalStorageService {
 
     interface LocalPostsStorage {
         suspend fun insertLocalPosts(post: List<PostRepository.Post>)
-        suspend fun insertNewPost(post: LocalStorageService.LocalPostStorage)
+        suspend fun insertNewPost(post: LocalPostStorage)
 
 //        suspend fun insertNewPost(post: PostRepository.Post)
         fun getAllLocalPosts(): Flow<List<LocalPostStorage>>
@@ -43,7 +41,7 @@ object LocalStorageService {
             dao.insert(postStorageEntities)
         }
 
-        override suspend fun insertNewPost(post: LocalStorageService.LocalPostStorage){
+        override suspend fun insertNewPost(post: LocalPostStorage){
             dao.insertNewPost(post)
         }
 
@@ -64,4 +62,3 @@ object LocalStorageService {
         }
     }
 }
-

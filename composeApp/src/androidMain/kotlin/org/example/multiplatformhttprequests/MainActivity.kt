@@ -9,10 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.viewmodel.compose.viewModel
 //import com.example.bunghttprequests.data.AppModule
-import com.example.bunghttprequests.presentation.screens.PostsScreen
+import org.example.multiplatformhttprequests.presentation.screens.PostsScreen
 import com.example.bunghttprequests.ui.theme.ÜbungHTTPRequestsTheme
 
 class MainActivity : ComponentActivity() {
