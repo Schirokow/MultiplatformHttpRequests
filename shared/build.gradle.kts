@@ -4,7 +4,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    id("com.google.devtools.ksp") version "2.2.0-2.0.2"
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
     id("com.rickclephas.kmp.nativecoroutines") version "1.0.0-ALPHA-46"
     kotlin("plugin.serialization") version "2.2.10"
 }
@@ -36,7 +37,7 @@ kotlin {
 
 
         commonMain.dependencies {
-            api("com.rickclephas.kmp:kmp-observableviewmodel-core:1.0.0-BETA-12")
+            api("com.rickclephas.kmp:kmp-observableviewmodel-core:1.0.0-BETA-13")
             // put your Multiplatform dependencies here
             implementation("io.insert-koin:koin-core:4.1.0")
             implementation(libs.kotlinx.coroutines.core)
@@ -46,12 +47,15 @@ kotlin {
             implementation("io.ktor:ktor-serialization-kotlinx-json:3.2.3")
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
+            // Room
+            implementation(libs.room.runtime)
+            implementation(libs.sqlite.bundled)
+
         }
 
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
-            //Room
-            implementation("androidx.room:room-ktx:2.7.2")
+
         }
 
         iosMain.dependencies {
@@ -75,4 +79,12 @@ android {
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
     }
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+dependencies {
+    ksp(libs.room.compiler)
 }
