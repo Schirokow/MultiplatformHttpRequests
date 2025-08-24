@@ -1,11 +1,14 @@
 [versions]
+koinCore = "4.1.0"
+kotlinxSerializationJson = "1.9.0"
+materialIconsExtended = "1.7.8"
 room = "2.7.2"
 ksp = "2.2.0-2.0.2"
 sqlite = "2.5.2"
 coroutines = "1.10.2"
 ktor = "3.2.3"
 agp = "8.12.1"
-android-compileSdk = "35"
+android-compileSdk = "36"
 android-minSdk = "24"
 android-targetSdk = "35"
 androidx-activity = "1.10.1"
@@ -20,6 +23,15 @@ kotlin = "2.2.10"
 transportRuntime = "4.0.0"
 
 [libraries]
+androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinCore" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCore" }
+koin-androidx-navigation = { module = "io.insert-koin:koin-androidx-navigation", version.ref = "koinCore" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room"}
 room-runtime-android = { module = "androidx.room:room-runtime-android", version.ref = "room"}
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room"}

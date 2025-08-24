@@ -28,13 +28,13 @@ kotlin {
             implementation(project(":shared"))
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            implementation("io.insert-koin:koin-core:4.1.0")
-            implementation("io.insert-koin:koin-android:4.1.0")
-            implementation("io.insert-koin:koin-androidx-navigation:4.1.0")
-            implementation("io.insert-koin:koin-androidx-compose:4.1.0")
+            implementation(libs.koin.core)
+            implementation(libs.koin.android)
+            implementation(libs.koin.androidx.navigation)
+            implementation(libs.koin.androidx.compose)
 
             // Extended Icons
-            implementation("androidx.compose.material:material-icons-extended:1.7.8")
+            implementation(libs.androidx.material.icons.extended)
 
         }
         commonMain.dependencies {
@@ -48,7 +48,6 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
-            implementation("io.insert-koin:koin-core:4.1.0")
 
             // Room
             implementation(libs.room.runtime)

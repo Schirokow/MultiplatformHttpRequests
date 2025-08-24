@@ -39,13 +39,13 @@ kotlin {
         commonMain.dependencies {
             api("com.rickclephas.kmp:kmp-observableviewmodel-core:1.0.0-BETA-13")
             // put your Multiplatform dependencies here
-            implementation("io.insert-koin:koin-core:4.1.0")
+            implementation(libs.koin.core)
             implementation(libs.kotlinx.coroutines.core)
-            implementation("io.ktor:ktor-client-core:3.2.3")
-            implementation("io.ktor:ktor-client-content-negotiation:3.2.3")
-            implementation("io.ktor:ktor-client-logging:3.2.3")
-            implementation("io.ktor:ktor-serialization-kotlinx-json:3.2.3")
-            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.kotlinx.serialization.json)
 
             // Room
             implementation(libs.room.runtime)
@@ -55,10 +55,10 @@ kotlin {
 
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
-            implementation("io.insert-koin:koin-core:4.1.0")
-            implementation("io.insert-koin:koin-android:4.1.0")
-            implementation("io.insert-koin:koin-androidx-navigation:4.1.0")
-            implementation("io.insert-koin:koin-androidx-compose:4.1.0")
+            implementation(libs.koin.core)
+            implementation(libs.koin.android)
+            implementation(libs.koin.androidx.navigation)
+            implementation(libs.koin.androidx.compose)
         }
 
         iosMain.dependencies {
