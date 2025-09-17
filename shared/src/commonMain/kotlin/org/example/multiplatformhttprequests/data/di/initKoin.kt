@@ -50,11 +50,6 @@ val commonModule = module {
     single<GetPostById> { GetPostByIdImplFlow() }
     single { GetPostByIdUseCase(get()) }
 
-
-
-    // HINWEIS: HttpService, LocalStorageService usw. müssen jetzt
-    // auch in Koin registriert werden. Du kannst das hier oder in einem
-    // separaten Modul machen.
 }
 
 // Erwartete (expect) Funktion für plattformspezifische Module

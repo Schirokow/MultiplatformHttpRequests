@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -31,7 +32,9 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -67,7 +70,7 @@ fun PostsScreen(modifier: Modifier = Modifier) {
 
     val TAG = "PostsScreen"
 
-    val postsViewModel: PostsViewModel = koinViewModel<PostsViewModel>()
+    val postsViewModel: PostsViewModel = koinViewModel()
 //    val postsDataList by postsViewModel.postsData.collectAsState()
     val postsDataList by postsViewModel.localStorageState.collectAsState()
     val isLoading by postsViewModel.isLoading.collectAsState()
@@ -98,18 +101,28 @@ fun PostsScreen(modifier: Modifier = Modifier) {
             title = { Text("Alle Posts löschen?") },
             text = { Text("Möchtest du wirklich alle Posts löschen?") },
             confirmButton = {
-                Button(
+                OutlinedButton(
                     onClick = {
                         postsViewModel.deleteAllPosts()
                         showDeleteDialog = false
                         Log.d(TAG, "all posts deleted")
-                    }
+                    },
+                    border = BorderStroke(1.dp,Color.Red),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        contentColor = Color.Red
+                    )
                 ) {
                     Text("Löschen")
                 }
             },
             dismissButton = {
-                Button(onClick = { showDeleteDialog = false }) {
+                OutlinedButton(
+                    onClick = { showDeleteDialog = false },
+                    border = BorderStroke(1.dp,Color.Blue),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        contentColor = Color.Blue
+                    )
+                ) {
                     Text("Abbrechen")
                 }
             }
@@ -141,18 +154,23 @@ fun PostsScreen(modifier: Modifier = Modifier) {
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     verticalAlignment = Alignment.CenterVertically
                 ){
-                    Button(
+                    OutlinedButton(
                         modifier = Modifier
                             .width(100.dp),
                         onClick = {
 //                            postsViewModel.loadAllPosts()
                             postsViewModel.loadPostsByUserId(userId)
-                        }
+                        },
+                        border = BorderStroke(1.dp,Color.Black),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            contentColor = Color.White
+                        )
+
                     ) {
                         Text("userId")
                     }
 
-                    Button(
+                    ElevatedButton(
                         modifier = Modifier
                             .width(100.dp),
                         onClick = {

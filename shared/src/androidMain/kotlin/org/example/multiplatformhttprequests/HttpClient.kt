@@ -23,9 +23,6 @@ actual val httpClient: HttpClient = HttpClient(OkHttp) {
         }
         level = LogLevel.ALL
     }
-//    engine {
-//        connectTimeout = 100_000
-//        socketTimeout = 100_000
-//    }
+
 }
 
