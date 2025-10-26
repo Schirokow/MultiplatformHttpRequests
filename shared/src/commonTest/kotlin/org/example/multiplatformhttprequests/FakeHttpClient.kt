@@ -6,7 +6,6 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.utils.io.ByteReadChannel
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.example.multiplatformhttprequests.data.PostRepository.Post
 
 // Diese Klasse simuliert einen HttpClient für Tests
 //class FakeHttpClient {
