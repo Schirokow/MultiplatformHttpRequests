@@ -15,7 +15,7 @@ object LocalStorageService {
     )
 
     interface LocalPostsStorage {
-        suspend fun insertLocalPosts(post: List<PostRepository.Post>)
+        suspend fun insertLocalPosts(post: List<Post>)
         suspend fun insertNewPost(post: LocalPostStorage)
 
 //        suspend fun insertNewPost(post: PostRepository.Post)
@@ -27,7 +27,7 @@ object LocalStorageService {
     }
 
     class PostsStorageImpl(private val dao: PostsDao) : LocalPostsStorage {
-        override suspend fun insertLocalPosts(posts: List<PostRepository.Post>) {
+        override suspend fun insertLocalPosts(posts: List<Post>) {
             val postStorageEntities = posts.map { post ->
                 LocalPostStorage(
                     // Wenn die ID von der API kommt, verwenden wir sie.

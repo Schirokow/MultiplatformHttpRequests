@@ -56,21 +56,21 @@ import androidx.compose.ui.unit.sp
 import com.example.bunghttprequests.card.PostCard
 import org.example.multiplatformhttprequests.data.LocalStorageService
 import org.koin.androidx.compose.koinViewModel
-import org.example.multiplatformhttprequests.data.PostRepository
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.material3.OutlinedTextFieldDefaults
 
 
 import org.example.multiplatformhttprequests.viewmodels.PostsViewModel
 import com.example.bunghttprequests.ui.theme.ÜbungHTTPRequestsTheme
+import org.example.multiplatformhttprequests.data.Post
 
 
 @Composable
-fun PostsScreen(modifier: Modifier = Modifier) {
+fun PostsScreen(modifier: Modifier = Modifier, postsViewModel: PostsViewModel = koinViewModel()) {
 
     val TAG = "PostsScreen"
 
-    val postsViewModel: PostsViewModel = koinViewModel()
+//    val postsViewModel: PostsViewModel = koinViewModel()
 //    val postsDataList by postsViewModel.postsData.collectAsState()
     val postsDataList by postsViewModel.localStorageState.collectAsState()
     val isLoading by postsViewModel.isLoading.collectAsState()
@@ -229,7 +229,7 @@ fun PostsScreen(modifier: Modifier = Modifier) {
                         },
                         modifier = Modifier.padding(start = 65.dp)
                     )
-                    val newPost = PostRepository.Post(userId = localUserId, title = title, body = eingabe)
+                    val newPost = Post(userId = localUserId, title = title, body = eingabe)
                     val localNewPost = LocalStorageService.LocalPostStorage(userId = localUserId, title = title, body = eingabe)
 
                     Spacer(modifier = Modifier.width(10.dp))
@@ -351,7 +351,7 @@ fun PostsScreen(modifier: Modifier = Modifier) {
                             },
                             modifier = Modifier.padding(start = 65.dp)
                         )
-                        val udatePost = PostRepository.Post(userId = post.userId, id = post.id, title = title, body = eingabe)
+                        val udatePost = Post(userId = post.userId, id = post.id, title = title, body = eingabe)
                         val localUdatePost = LocalStorageService.LocalPostStorage(userId = post.userId, id = post.id, title = title, body = eingabe)
 
                         Spacer(modifier = Modifier.width(10.dp))

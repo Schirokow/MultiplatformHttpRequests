@@ -1,11 +1,15 @@
 package org.example.multiplatformhttprequests.usecases
 
 import org.example.multiplatformhttprequests.data.CreatePost
-import org.example.multiplatformhttprequests.data.PostRepository
+import org.example.multiplatformhttprequests.data.Post
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class CreatePostUseCase(private val createPost: CreatePost) {
+class CreatePostUseCase(): KoinComponent {
 
-    suspend fun createNewPost(newPost: PostRepository.Post): PostRepository.Post?{
+    private val createPost: CreatePost by inject()
+
+    suspend fun createNewPost(newPost: Post): Post?{
         return createPost.createPost(newPost)
     }
 }

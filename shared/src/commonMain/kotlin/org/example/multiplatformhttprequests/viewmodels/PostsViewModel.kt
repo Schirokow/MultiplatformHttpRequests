@@ -8,7 +8,7 @@ import com.rickclephas.kmp.observableviewmodel.launch
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.example.multiplatformhttprequests.data.LocalStorageService
-import org.example.multiplatformhttprequests.data.PostRepository
+import org.example.multiplatformhttprequests.data.Post
 import org.example.multiplatformhttprequests.logMessage
 import org.example.multiplatformhttprequests.usecases.CreatePostUseCase
 import org.example.multiplatformhttprequests.usecases.GetPostByIdUseCase
@@ -39,7 +39,7 @@ class PostsViewModel(
     init {
         viewModelScope.launch {
             // Posts laden
-            getPostsUseCase.getPostsFlow().collect { posts ->
+            getPostsUseCase.getPosts().collect { posts ->
                 localPostStorage.insertLocalPosts(posts)
 //                _postsData.value = posts
             }
@@ -56,7 +56,7 @@ class PostsViewModel(
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                getPostsUseCase.getPostsFlow().collect { posts ->
+                getPostsUseCase.getPosts().collect { posts ->
                     localPostStorage.insertLocalPosts(posts)
 //                    localPostStorage.getAllLocalPosts().collect { localPosts ->
 //                        _localStorageState.value = localPosts
@@ -76,7 +76,7 @@ class PostsViewModel(
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                getPostsByUserIdUseCase.getPostsByUserIdFlow(userId).collect { posts ->
+                getPostsByUserIdUseCase.getPostsByUserId(userId).collect { posts ->
                     localPostStorage.insertLocalPosts(posts)
                     logMessage("PostsViewModel All Posts by userId loaded")
                 }
@@ -93,7 +93,7 @@ class PostsViewModel(
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                getPostByIdUseCase.getPostByIdFlow(id).collect { post ->
+                getPostByIdUseCase.getPostById(id).collect { post ->
                     val localPost = LocalStorageService.LocalPostStorage(
                         id = post?.id ?: 0,
                         userId = post?.userId ?: 0,
@@ -127,7 +127,7 @@ class PostsViewModel(
         }
     }
 
-    fun createNewPost(newPost: PostRepository.Post) {
+    fun createNewPost(newPost: Post) {
         viewModelScope.launch {
             _isLoading.value = true
             try {
@@ -141,7 +141,7 @@ class PostsViewModel(
         }
     }
 
-    fun udatePost(post: PostRepository.Post) {
+    fun udatePost(post: Post) {
         viewModelScope.launch {
             _isLoading.value = true
             try {
