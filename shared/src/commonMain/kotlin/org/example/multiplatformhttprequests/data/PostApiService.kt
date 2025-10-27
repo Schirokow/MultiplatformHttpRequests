@@ -25,10 +25,10 @@ data class Post(
 )
 
 
-class PostApiService(private val client: HttpClient) {
+open class PostApiService(private val client: HttpClient) {
 
 
-    suspend fun getPosts(): List<Post> {
+    open suspend fun getPosts(): List<Post> {
         return try {
             withContext(Dispatchers.IO) {
                 client.get("https://jsonplaceholder.typicode.com/posts") {

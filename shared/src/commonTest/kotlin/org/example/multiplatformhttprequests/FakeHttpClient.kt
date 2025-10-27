@@ -3,90 +3,79 @@ package org.example.multiplatformhttprequests
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpStatusCode
+import io.ktor.http.HttpProtocolVersion
+import io.ktor.http.Headers
+import io.ktor.util.date.GMTDate
 import io.ktor.utils.io.ByteReadChannel
+import io.ktor.utils.io.InternalAPI
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import org.example.multiplatformhttprequests.data.Post
+import kotlin.coroutines.CoroutineContext
 
-// Diese Klasse simuliert einen HttpClient für Tests
-//class FakeHttpClient {
-//    // Speichert Listen von Posts für URLs wie "https://jsonplaceholder.typicode.com/posts"
-//    private val posts = mutableMapOf<String, List<Post>>()
-//
-//    // Speichert einen einzelnen Post für URLs wie "https://jsonplaceholder.typicode.com/posts/1"
-//    private var singlePost: Post? = null
-//
-//    // Speichert die Antwort für createPost oder updatePost
-//    private var postResponse: Post? = null
-//
-//    // Speichert einen Fehler, falls wir einen simulieren wollen
-//    private var exception: Exception? = null
-//
-//    // Fügt Test-Posts für eine URL hinzu
-//    fun givenPosts(url: String, posts: List<Post>) {
-//        this.posts[url] = posts
-//    }
-//
-//    // Fügt einen einzelnen Test-Post hinzu
-//    fun givenSinglePost(post: Post) {
-//        this.singlePost = post
-//    }
-//
-//    // Fügt eine Test-Antwort für create/update hinzu
-//    fun givenPostResponse(post: Post) {
-//        this.postResponse = post
-//    }
-//
-//    // Simuliert einen Fehler
-//    fun givenException(exception: Exception) {
-//        this.exception = exception
-//    }
-//
-//    // Simuliert einen GET-Aufruf
-//    suspend fun get(urlString: String, block: HttpRequestBuilder.() -> Unit = {}): HttpResponse {
-//        return createResponse(urlString)
-//    }
-//
-//    // Simuliert einen POST-Aufruf
-//    suspend fun post(urlString: String, block: HttpRequestBuilder.() -> Unit = {}): HttpResponse {
-//        return createResponse(urlString)
-//    }
-//
-//    // Simuliert einen PUT-Aufruf
-//    suspend fun put(urlString: String, block: HttpRequestBuilder.() -> Unit = {}): HttpResponse {
-//        return createResponse(urlString)
-//    }
-//
-//    // Erstellt eine gefälschte HTTP-Antwort
-//    private suspend fun createResponse(urlString: String): HttpResponse {
-//        // Wenn ein Fehler simuliert werden soll, werfen wir ihn
-//        if (exception != null) throw exception!!
-//
-//        // Erstelle eine gefälschte Antwort
-//        return object : HttpResponse() {
-//            override val status get() = HttpStatusCode.OK // Antwort ist immer OK
-//            override val content: ByteReadChannel
-//                get() = when {
-//                    // Für URLs wie "posts/1" geben wir singlePost zurück
-//                    urlString.contains("posts/") && singlePost != null -> {
-//                        ByteReadChannel(Json.encodeToString(singlePost))
-//                    }
-//                    // Für URLs wie "posts" geben wir die Liste zurück
-//                    urlString.contains("posts") && posts[urlString] != null -> {
-//                        ByteReadChannel(Json.encodeToString(posts[urlString]))
-//                    }
-//                    // Für create/update geben wir postResponse zurück
-//                    postResponse != null -> {
-//                        ByteReadChannel(Json.encodeToString(postResponse))
-//                    }
-//                    // Standard: leere Antwort
-//                    else -> ByteReadChannel("")
-//                }
-//            // Diese Felder sind für Tests nicht wichtig
-//            override val headers get() = io.ktor.http.Headers.Empty
-//            override val requestTime get() = 0L // Einfacher Platzhalter
-//            override val responseTime get() = 0L // Einfacher Platzhalter
-//            override val version get() = io.ktor.http.HttpProtocolVersion.HTTP_1_1
-//            override val call get() = throw NotImplementedError()
-//        }
-//    }
-//}
+class FakeHttpClient {
+    private val posts = mutableMapOf<String, List<Post>>()
+    private var singlePost: Post? = null
+    private var postResponse: Post? = null
+    private var exception: Exception? = null
+
+    fun givenPosts(url: String, posts: List<Post>) {
+        this.posts[url] = posts
+    }
+
+    fun givenSinglePost(post: Post) {
+        this.singlePost = post
+    }
+
+    fun givenPostResponse(post: Post) {
+        this.postResponse = post
+    }
+
+    fun givenException(exception: Exception) {
+        this.exception = exception
+    }
+
+    suspend fun get(urlString: String, block: HttpRequestBuilder.() -> Unit = {}): HttpResponse {
+        return createResponse(urlString)
+    }
+
+    suspend fun post(urlString: String, block: HttpRequestBuilder.() -> Unit = {}): HttpResponse {
+        return createResponse(urlString)
+    }
+
+    suspend fun put(urlString: String, block: HttpRequestBuilder.() -> Unit = {}): HttpResponse {
+        return createResponse(urlString)
+    }
+
+    private suspend fun createResponse(urlString: String): HttpResponse {
+        if (exception != null) throw exception!!
+
+        return object : HttpResponse() {
+            override val coroutineContext: CoroutineContext get() = object : CoroutineContext {
+                override fun <R> fold(initial: R, operation: (R, CoroutineContext.Element) -> R): R = initial
+                override fun <E : CoroutineContext.Element> get(key: CoroutineContext.Key<E>): E? = null
+                override fun minusKey(key: CoroutineContext.Key<*>): CoroutineContext = this
+                override fun plus(context: CoroutineContext): CoroutineContext = context
+            }
+            override val status: HttpStatusCode get() = HttpStatusCode.OK
+            @OptIn(InternalAPI::class)
+            override val rawContent: ByteReadChannel get() = when {
+                urlString.contains("posts/") && singlePost != null -> {
+                    ByteReadChannel(Json.encodeToString(singlePost))
+                }
+                urlString.contains("posts") && posts[urlString] != null -> {
+                    ByteReadChannel(Json.encodeToString(posts[urlString]))
+                }
+                postResponse != null -> {
+                    ByteReadChannel(Json.encodeToString(postResponse))
+                }
+                else -> ByteReadChannel("")
+            }
+            override val headers: Headers get() = Headers.Empty
+            override val requestTime: GMTDate get() = GMTDate(0)
+            override val responseTime: GMTDate get() = GMTDate(0)
+            override val version: HttpProtocolVersion get() = HttpProtocolVersion.HTTP_1_1
+            override val call get() = throw NotImplementedError()
+        }
+    }
+}

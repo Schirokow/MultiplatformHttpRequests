@@ -58,6 +58,7 @@ kotlin {
             implementation(libs.room.runtime)
             implementation(libs.sqlite.bundled)
 
+
         }
 
         androidMain.dependencies {
@@ -78,12 +79,21 @@ kotlin {
             implementation(libs.kotlin.testJunit)
             implementation(libs.assertk)
             implementation(kotlin("test-annotations-common"))
-
+            implementation("com.willowtreeapps.assertk:assertk:0.28.1")
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2") // Konsistente Version
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
             implementation("io.mockk:mockk:1.14.6")
             implementation("org.junit.jupiter:junit-jupiter:6.0.0")
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+
+            implementation(kotlin("test"))
+            implementation("io.ktor:ktor-client-mock:3.3.1") // MockEngine
+
+
         }
+    }
+    sourceSets.commonMain.dependencies {
+        implementation(kotlin("test"))
     }
 }
 
