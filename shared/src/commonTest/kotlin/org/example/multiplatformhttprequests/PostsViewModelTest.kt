@@ -4,6 +4,7 @@ package org.example.multiplatformhttprequests
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
+import org.example.multiplatformhttprequests.data.CreatePost
 import org.example.multiplatformhttprequests.data.GetPostById
 import org.example.multiplatformhttprequests.data.GetPostsByUserId
 import org.example.multiplatformhttprequests.data.LocalStorageService
@@ -39,7 +40,13 @@ class PostsViewModelTest {
         val vm = PostsViewModel(
             localPostStorage = fakeStorage,
             getPostsUseCase = FakeGetPostsUseCase(),
-            createPostUseCase = CreatePostUseCase(),
+            createPostUseCase = CreatePostUseCase(
+                createPost = object : CreatePost {
+                    override suspend fun createPost(newPost: Post): Post? {
+                        return newPost.copy(title = "Created by Fake")
+                    }
+                }
+            ),
             updatePostUseCase = UpdatePostUseCase(object : UpdatePost {
                 override suspend fun updatePost(post: Post) = post
             }),

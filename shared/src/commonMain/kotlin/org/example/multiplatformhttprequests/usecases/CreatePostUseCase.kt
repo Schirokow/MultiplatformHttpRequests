@@ -5,11 +5,18 @@ import org.example.multiplatformhttprequests.data.Post
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class CreatePostUseCase(): KoinComponent {
+//class CreatePostUseCase(): KoinComponent {
+//
+//    private val createPost: CreatePost by inject()
+//
+//    suspend fun createNewPost(newPost: Post): Post?{
+//        return createPost.createPost(newPost)
+//    }
+//}
 
-    private val createPost: CreatePost by inject()
+class CreatePostUseCase(private val createPost: CreatePost) {
 
-    suspend fun createNewPost(newPost: Post): Post?{
+    suspend fun createNewPost(newPost: Post): Post? {
         return createPost.createPost(newPost)
     }
 }

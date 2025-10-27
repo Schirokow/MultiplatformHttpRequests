@@ -47,7 +47,7 @@ val commonModule = module {
     single { GetPostsUseCase(get()) }
 
     single<CreatePost> { CreatePostImpl(get()) }
-    single { CreatePostUseCase() }
+    single { CreatePostUseCase(get()) }
 
     single<UpdatePost>{ UpdatePostImpl(get()) }
     single { UpdatePostUseCase(get()) }
