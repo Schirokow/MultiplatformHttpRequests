@@ -31,11 +31,11 @@ kotlin {
     
     sourceSets {
 
-        val commonTest by getting {
-            dependencies {
-                implementation("com.willowtreeapps.assertk:assertk:0.28.1")
-            }
-        }
+//        val commonTest by getting {
+//            dependencies {
+//                implementation("com.willowtreeapps.assertk:assertk:0.28.1")
+//            }
+//        }
 
         all {
             languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")

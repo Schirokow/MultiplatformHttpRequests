@@ -1,7 +1,11 @@
 package org.example.multiplatformhttprequests
 
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runTest
 import org.example.multiplatformhttprequests.data.*
 import org.example.multiplatformhttprequests.usecases.*
@@ -105,4 +109,7 @@ class UseCasesTest {
         assertNotNull(result, "Expected non-null Post for ID 2")
         assertEquals("Second Post", result.title)
     }
+
 }
+
+

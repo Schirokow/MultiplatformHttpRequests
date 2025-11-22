@@ -25,7 +25,7 @@ interface GetPostsByUserId{
     fun getPostsByUserIdFlow(userId: Int?): Flow<List<Post>>
 }
 
-interface GetPostById{
+fun interface GetPostById{
     fun getPostByIdFlow(id: Int?): Flow<Post?>
 }
 
@@ -43,8 +43,6 @@ class PostsRepositoryImpl(private val api: PostApiService): PostsRepository{
             emit(api.getPosts())
         }
     }
-
-
 }
 
 class GetPostsByUserIdImpl(private val api: PostApiService): GetPostsByUserId{
@@ -53,8 +51,6 @@ class GetPostsByUserIdImpl(private val api: PostApiService): GetPostsByUserId{
             emit(api.getPostsByUserId(userId))
         }
     }
-
-
 }
 
 class GetPostByIdImpl(private val api: PostApiService): GetPostById{
